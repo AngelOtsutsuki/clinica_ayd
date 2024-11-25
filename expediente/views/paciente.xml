@@ -1,0 +1,83 @@
+<odoo>
+    <record id="view_paciente_form" model="ir.ui.view">
+        <field name="name">expediente.paciente.form</field>
+        <field name="model">expediente.paciente</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="nombres"/>
+                        <field name="apellidos"/>
+                        <field name="numero_cuenta"/>
+                        <field name="edad"/>
+                        <field name="genero"/>
+                        <field name="telefono"/>
+                        <field name="correo_inst"/>
+                        <!-- <field name="historial_medico"/> -->
+                    </group>
+                    <!-- <notebook>
+                        <page name="citas" string="Citas Médicas">
+                            <field name="citas_ids"/>
+                        </page>
+                    </notebook> -->
+                    <!-- <footer>
+                    <button name="action_guardar_cambios" type="object" string="Guardar Cambios" class="btn-primary"/>
+                    </footer> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_paciente_list" model="ir.ui.view">
+        <field name="name">expediente.paciente.list</field>
+        <field name="model">expediente.paciente</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="numero_cuenta"/>
+                <field name="nombres"/>
+                <field name="apellidos"/>
+                <!-- <field name="edad"/> -->
+                <!-- <field name="genero"/> -->
+                <!-- <field name="phone"/> -->
+                <!-- <field name="email"/> -->
+            </list>
+        </field>
+    </record>
+    <record id="view_paciente_form_with_citas" model="ir.ui.view">
+    <field name="name">expediente.paciente.form.with.citamedica</field>
+    <field name="model">expediente.paciente</field>
+    <field name="inherit_id" ref="expediente.view_paciente_form"/>
+    <field name="arch" type="xml">
+    <xpath expr="//group[1]" position="after">
+        <notebook>
+            <page string="Citas Médicas">
+                <field name="citas_ids">
+                    <list>
+                        <field name="fecha_cita" />
+                        <field name="estado" />
+                        <field name="doctor" />
+                    </list>
+                    <form>
+                    <group name="name" string="string">
+                       <group name="name" string="string">
+                         <field name="fecha_cita" />
+                        <field name="motivo" />
+                       </group>
+                       <group name="name" string="string">
+                            <field name="doctor" />
+                        <field name="estado" />
+                       </group>
+                    </group>
+                    </form>
+                </field>
+                <button string="Añadir Cita" type="object" name="action_create_cita" class="btn-primary"/> 
+            </page>
+        </notebook>
+        
+    </xpath>
+    </field>
+</record> 
+</odoo>
+
+
+
