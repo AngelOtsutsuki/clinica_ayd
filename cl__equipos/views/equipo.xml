@@ -1,0 +1,33 @@
+<odoo>
+    <record id="view_equipo_form" model="ir.ui.view">
+        <field name="name">equipo.form</field>
+        <field name="model">cl_equipos.equipo</field>
+        <field name="arch" type="xml">
+            <form string="Equipo">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="estado"/>
+                        <field name="cantidad"/>
+                        <field name="ubicacion"/>
+                        <field name="fecha_ultimo_mantenimiento"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_equipo_list" model="ir.ui.view">
+        <field name="name">equipo.list</field>
+        <field name="model">cl_equipos.equipo</field>
+        <field name="arch" type="xml">
+            <list string="Equipos">
+                <field name="name"/>
+                <field name="estado"/>
+                <field name="cantidad"/>
+                <field name="ubicacion"/>
+                <field name="fecha_ultimo_mantenimiento"/>
+            </list>
+        </field>
+    </record>
+</odoo>
