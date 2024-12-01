@@ -7,20 +7,31 @@ class Paciente(models.Model):
     # _inherit = 'res.partner'
     _description = 'Pacientes del sistema médico'
     
-
+    tipo_pac = fields.Selection([
+        ('estudiante', 'Estudiante'),
+        ('docente', 'Docente'),
+        ('visitante', 'Visitante'),
+    ], string='Tipo de Paciente')
     nombres = fields.Char(string='Nombres')
     apellidos = fields.Char(string='Apellidos')
     numero_cuenta = fields.Char(string='Número de Cuenta', required=True, unique=True)
-    edad = fields.Integer(string='Edad')
-    telefono = fields.Char(string='Teléfono')
+    identidad = fields.Char(string='Número de Identidad')
     genero = fields.Selection([
         ('masculino', 'Masculino'),
         ('femenino', 'Femenino'),
     ], string='Género')
+    fecha_nac = fields.Date(string='Fecha de Nacimiento', required=True, unique=True)
+    edad = fields.Integer(string='Edad')
     correo_inst = fields.Char(string='Correo Institucional')
-    citas_ids = fields.One2many('expediente.citamedica', 'paciente_id', string='Citas Médicas')
-    def action_create_cita(self):
-        print(self.nombres, self.citas_ids)
+    telefono = fields.Char(string='Teléfono')
+    alergias = fields.Text(string='Alergias')
+    med_act = fields.Text(string='Medicamenos Actuales')
+    enf_pre = fields.Text(string='Enfermedades Preexistentes')
+    nombre_cont = fields.Char(string='Nombre del Contacto')
+    relacion = fields.Char(string='Relación')
+    telefono_cont = fields.Char(string='Número de Teléfono')
+    telefono_cont2 = fields.Char(string='Otro Teléfono')
+    citas_ids = fields.One2many('expediente.citamedica', 'paciente_id', string='Cita Médica')
     #historial_medico = fields.Text(string='Historial Médico')
 
     #  @api.model

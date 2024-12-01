@@ -5,78 +5,137 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                <group name="agregar" string="Agregar Nuevo Paciente">
+                    <field name="tipo_pac"/>
+                </group>
                     <group>
-                        <field name="nombres"/>
-                        <field name="apellidos"/>
-                        <field name="numero_cuenta"/>
-                        <field name="edad"/>
-                        <field name="genero"/>
-                        <field name="telefono"/>
-                        <field name="correo_inst"/>
-                        <!-- <field name="historial_medico"/> -->
+                        <group>
+                            <field name="nombres"/>
+                            <field name="numero_cuenta"/>
+                        </group>
+                        <group>
+                            <field name="apellidos"/>
+                            <field name="identidad"/>
+                        </group>
+                        <group>
+                            <field name="genero"/>
+                            <field name="edad"/>
+                        </group>
+                        <group>
+                            <field name="fecha_nac"/>
+                            <field name="correo_inst"/>
+                        </group>
+                        <group>
+                            <field name="telefono"/>
+                        </group>
                     </group>
-                    <!-- <notebook>
-                        <page name="citas" string="Citas Médicas">
-                            <field name="citas_ids"/>
-                        </page>
-                    </notebook> -->
-                    <!-- <footer>
-                    <button name="action_guardar_cambios" type="object" string="Guardar Cambios" class="btn-primary"/>
-                    </footer> -->
+                <group>
+                    <field name="alergias"/>    
+                </group>
+                <group>
+                    <field name="med_act"/>   
+                </group>
+                <group name="ultimo">
+                    <field name="enf_pre"/>    
+                </group>
+                <group name="contacto" string="Contacto de Emergencia">
+                    <group>
+                        <field name="nombre_cont"/>
+                        <field name="telefono_cont"/>
+                    </group>
+                    <group>
+                        <field name="relacion"/>
+                        <field name="telefono_cont2"/>
+                    </group>
+                </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <record id="view_paciente_list" model="ir.ui.view">
-        <field name="name">expediente.paciente.list</field>
-        <field name="model">expediente.paciente</field>
-        <field name="arch" type="xml">
-            <list>
-                <field name="numero_cuenta"/>
-                <field name="nombres"/>
-                <field name="apellidos"/>
-                <!-- <field name="edad"/> -->
-                <!-- <field name="genero"/> -->
-                <!-- <field name="phone"/> -->
-                <!-- <field name="email"/> -->
-            </list>
-        </field>
-    </record>
+<record id="view_paciente_kanban" model="ir.ui.view">
+    <field name="name">expediente.paciente.kanban</field>
+    <field name="model">expediente.paciente</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <field name="numero_cuenta"/>
+            <field name="nombres"/>
+            <field name="apellidos"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_global oe_kanban_card">
+                        <div class="oe_kanban_content">
+                            <strong>Cuenta: <field name="numero_cuenta"/></strong>
+                            <div>
+                                <span><strong>Nombre:</strong> <field name="nombres"/> <field name="apellidos"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
     <record id="view_paciente_form_with_citas" model="ir.ui.view">
     <field name="name">expediente.paciente.form.with.citamedica</field>
     <field name="model">expediente.paciente</field>
     <field name="inherit_id" ref="expediente.view_paciente_form"/>
     <field name="arch" type="xml">
-    <xpath expr="//group[1]" position="after">
+    <xpath expr="//group[@name='contacto']" position="after">
         <notebook>
-            <page string="Citas Médicas">
-                <field name="citas_ids">
-                    <list>
-                        <field name="fecha_cita" />
-                        <field name="estado" />
-                        <field name="doctor" />
-                    </list>
+            <page string="Cita Médica">
+                <field name="citas_ids" mode="kanban,list,form">
+                    <kanban>
+                        <field name="doctor"/>
+                        <field name="fecha_cita"/>
+                        <field name="motivo"/>
+                        <field name="diagnostico"/>
+                        <field name="tratamiento"/>
+                        <templates>
+                            <t t-name="kanban-box">
+                                <div t-attf-class="oe_kanban_global oe_kanban_card">
+                                    <div class="oe_kanban_content">
+                                        <strong>Fecha: <field name="fecha_cita"/></strong>
+                                        <strong>Doctor: <field name="doctor"/></strong>
+                                        <strong>Motivo: <field name="motivo"/></strong>
+                                        <strong>Diagnóstico: <field name="diagnostico"/></strong>
+                                        <strong>Tratamiento: <field name="tratamiento"/></strong>
+                                    </div>
+                                </div>
+                            </t>
+                        </templates>
+                    </kanban>
+                    <!-- <list>
+                        <field name="fecha_cita"/>
+                        <field name="doctor"/>
+                        <field name="motivo"/>
+                        <field name="diagnostico"/>
+                        <field name="tratamiento"/>
+                    </list> -->
                     <form>
-                    <group name="name" string="string">
-                       <group name="name" string="string">
-                         <field name="fecha_cita" />
-                        <field name="motivo" />
-                       </group>
-                       <group name="name" string="string">
-                            <field name="doctor" />
-                        <field name="estado" />
-                       </group>
-                    </group>
+                        <group>
+                            <group>
+                                    <field name="doctor" />
+                                    <field name="motivo" />
+                            </group>
+                            <group>
+                                    <field name="fecha_cita" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="diagnostico" />
+                        </group>
+                        <group>
+                            <field name="tratamiento" />
+                        </group>
                     </form>
                 </field>
-                <button string="Añadir Cita" type="object" name="action_create_cita" class="btn-primary"/> 
             </page>
-        </notebook>
-        
+        </notebook>  
     </xpath>
     </field>
-</record> 
+    </record> 
 </odoo>
 
 

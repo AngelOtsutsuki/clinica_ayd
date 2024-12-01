@@ -7,11 +7,7 @@ class CitaMedica(models.Model):
 
     paciente_id = fields.Many2one('expediente.paciente', string='Paciente', required=True, ondelete='cascade')
     fecha_cita = fields.Datetime(string='Fecha y Hora', required=True)
-    motivo = fields.Text(string='Motivo de la Cita', required=True)
+    motivo = fields.Char(string='Motivo de la Cita', required=True)
     doctor = fields.Char(string='Doctor')
-    estado = fields.Selection([
-        ('pendiente', 'Pendiente'),
-        ('confirmada', 'Confirmada'),
-        ('completada', 'Completada'),
-        ('cancelada', 'Cancelada'),
-    ], string='Estado', default='pendiente', required=True)
+    diagnostico = fields.Text(string='Diagnóstico')
+    tratamiento = fields.Text(string='Tratamiento')

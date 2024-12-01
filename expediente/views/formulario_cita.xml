@@ -11,7 +11,6 @@
                         <field name="fecha_cita" />
                         <field name="motivo" />
                         <field name="doctor" />
-                        <field name="estado" />
                     </group>
                 </sheet>
             </form>
