@@ -7,6 +7,7 @@
                 <sheet>
                 <group name="agregar" string="Agregar Nuevo Paciente">
                     <field name="tipo_pac"/>
+                    <field name="numero_empleado"/>
                 </group>
                     <group>
                         <group>
@@ -65,9 +66,18 @@
                 <t t-name="kanban-box">
                     <div t-attf-class="oe_kanban_global oe_kanban_card">
                         <div class="oe_kanban_content">
+                            <div>
+                            <span><strong>Tipo de Paciente:</strong> <field name="tipo_pac"/></span>
+                            </div>
                             <strong>Cuenta: <field name="numero_cuenta"/></strong>
                             <div>
                                 <span><strong>Nombre:</strong> <field name="nombres"/> <field name="apellidos"/></span>
+                            </div>
+                            <div>
+                            <span><strong>Teléfono:</strong> <field name="telefono"/></span>
+                            </div>
+                            <div>
+                            <span><strong>Correo Institucional:</strong> <field name="correo_inst"/></span>
                             </div>
                         </div>
                     </div>
