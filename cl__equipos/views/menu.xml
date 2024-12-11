@@ -1,6 +1,6 @@
 <odoo>
     <!-- Menú principal (si no está definido en otro lugar) -->
-    <menuitem id="menu_parent_clinica" name="Clínica"/>
+    <menuitem id="menu_parent_clinica" name="Equipos"/>
 
     <!-- Menú Equipos -->
     <menuitem id="menu_equipo" name="Equipos" parent="menu_parent_clinica"/>

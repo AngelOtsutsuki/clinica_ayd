@@ -5,12 +5,18 @@
         <field name="arch" type="xml">
             <form string="Equipo">
                 <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="estado"/>
-                        <field name="cantidad"/>
-                        <field name="ubicacion"/>
-                        <field name="fecha_ultimo_mantenimiento"/>
+                    <group name="añadir" string="Añadir Equipo">
+                        <group>
+                            <field name="nombre"/>
+                            <field name="estado"/>
+                        </group>
+                        <group>
+                            <field name="numero_inv"/>
+                            <field name="fecha_ultimo_mantenimiento"/>
+                        </group>
+                        <group>
+                            <field name="ubicacion"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -22,12 +28,14 @@
         <field name="model">cl_equipos.equipo</field>
         <field name="arch" type="xml">
             <list string="Equipos">
-                <field name="name"/>
+                <field name="numero_inv"/>
+                <field name="nombre"/>
                 <field name="estado"/>
-                <field name="cantidad"/>
                 <field name="ubicacion"/>
                 <field name="fecha_ultimo_mantenimiento"/>
             </list>
         </field>
     </record>
 </odoo>
+
+

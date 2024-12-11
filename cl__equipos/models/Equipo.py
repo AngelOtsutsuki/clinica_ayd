@@ -1,25 +1,33 @@
-from odoo import models, fields, api # type: ignore
+from odoo import models, fields, api, exceptions # type: ignore
 
 class Equipo(models.Model): 
     _name = 'cl_equipos.equipo'
     _description = 'Equipo'
 
-    name = fields.Char(string="Nombre", required=True)
-    estado = fields.Selection([('activo', 'Activo'), ('inactivo', 'Inactivo')], string="Estado", required=True)
-    cantidad = fields.Integer(string="Cantidad en inventario", default=0)
+    nombre = fields.Char(string="Nombre", required=True)
+    estado = fields.Selection([('activo', 'Activo'), ('inactivo', 'Inactivo')], string="Estado", required=True, default='activo')
+    numero_inv = fields.Char(string="Número de Inventario", default=0)
     ubicacion = fields.Char(string="Ubicación")
-    fecha_ultimo_mantenimiento = fields.Date(string="Fecha de Último Mantenimiento")
+    fecha_ultimo_mantenimiento = fields.Date(string="Último Mantenimiento")
+    active = fields.Boolean(string="Activo", default=True)
+
+    @api.onchange('estado')
+    def _onchange_estado(self):
+        """Cambia automáticamente el campo 'active' según el estado del equipo."""
+        for record in self:
+            record.active = record.estado == 'activo'
 
     @api.model
-    def actualizar_cantidad(self, cantidad, tipo):
-         """
-         Actualiza la cantidad del equipo.
-         :param cantidad: Cantidad a sumar o restar.
-         :param tipo: 'agregar' o 'restar'.
-         """
-         if tipo == 'agregar':
-             self.cantidad += cantidad
-         elif tipo == 'restar' and self.cantidad >= cantidad:
-             self.cantidad -= cantidad
-         else:
-             raise ValueError("Cantidad insuficiente en el inventario.")
+    def create(self, vals):
+        """Asegura que el campo active se sincronice con el estado en la creación."""
+        if 'estado' in vals and vals['estado'] == 'inactivo':
+            vals['active'] = False
+        return super(Equipo, self).create(vals)
+
+    def write(self, vals):
+        """Sincroniza el campo 'active' con el estado al actualizar."""
+        if 'estado' in vals:
+            vals['active'] = vals['estado'] == 'activo'
+        return super(Equipo, self).write(vals)
+
+
