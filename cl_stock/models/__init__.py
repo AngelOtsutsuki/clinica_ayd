@@ -2,3 +2,4 @@
 
 from . import models
 from . import medicamento
+from . import movimiento

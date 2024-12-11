@@ -5,13 +5,34 @@
         <field name="arch" type="xml">
             <form string="Medicamento">
                 <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="descripcion"/>
-                        <field name="cantidad"/>
-                        <field name="precio_unitario"/>
-                        <field name="fecha_caducidad"/>
+                    <group name="agregar" string="Agregar Medicamento">
+                        <group>
+                            <field name="nombre_gen"/>
+                            <field name="presentacion"/>
+                        </group>
+                        <group>
+                            <field name="nombre_com"/>
+                            <field name="cantidad"/> 
+                        </group>
+                        <group>
+                            <field name="fecha_caducidad"/>
+                        </group>
+                        <group>
+                            <field name="sin_caducidad"/>
+                        </group>
                     </group>
+                    <notebook>
+                        <page string="Historial">
+                            <field name="movimiento_ids">
+                                <list>
+                                    <field name="fecha"/>
+                                    <field name="tipo"/>
+                                    <field name="cantidad"/>
+                                    <field name="cantidad_final"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -22,13 +43,13 @@
         <field name="model">cl_stock.medicamento</field>
         <field name="arch" type="xml">
             <list string="Medicamentos">
-                <field name="name"/>
+                <field name="nombre_gen"/>
+                <field name="nombre_com"/>
+                <field name="presentacion"/>
                 <field name="cantidad"/>
-                <field name="precio_unitario"/>
+                <field name="sin_caducidad"/>
                 <field name="fecha_caducidad"/>
             </list>
         </field>
-    </record>
-
-    
+    </record>    
 </odoo>
