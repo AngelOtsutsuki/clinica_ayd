@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api # type: ignore
 
 class Inicio(models.Model):
     _name = 'cl_registro.inicio'
@@ -8,7 +8,14 @@ class Inicio(models.Model):
 
     def dummy_inventario(self):
         # Método temporal para el botón de Inventario
-        pass
+        return {
+        'type': 'ir.actions.act_window',
+        'name': 'Inventario',
+        'res_model': 'cl_inventario.inicio_inv',
+        'view_mode': 'form',
+        'target': 'current',
+        'view_id': self.env.ref('cl_inventario.view_inicio_inv_form').id,
+        }
 
     def abrir_expediente(self):
         # Método para redirigir al módulo expediente
@@ -16,6 +23,6 @@ class Inicio(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Pacientes',
             'res_model': 'expediente.paciente',  # El modelo de pacientes en expediente
-            'view_mode': 'list,form',  # Tipo de vistas que quieres mostrar
+            'view_mode': 'kanban,list,form',  # Tipo de vistas que quieres mostrar
             'target': 'current',  # Muestra en la misma ventana
         }
