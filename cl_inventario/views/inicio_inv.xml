@@ -1,0 +1,39 @@
+<odoo>
+    <record id="view_inicio_inv_form" model="ir.ui.view">
+        <field name="name">Inventario Form</field>
+        <field name="model">cl_inventario.inicio_inv</field>
+        <field name="arch" type="xml">
+            <form string="Inventario">
+                <sheet>
+                    <h1 style="text-align: center; margin-top: 30px; margin-bottom: 50px;">Gestión de Inventario: Control y Disponibilidad de Recursos Médicos</h1>
+                    <div class="row" style="margin-top:20px; text-align:center;">
+                        <div class="col-6">
+                            <button name="inventario_medicamentos" type="object" class="btn btn-info btn-sm w-100 d-flex flex-column align-items-center">
+                            <img src="/cl_inventario/static/img/Medicamentos2.png" alt="Medicamentos" style="width: 80px; height: 80px; margin-bottom: 1px;"/>
+                            <span style="font-size: 18px; white-space: normal; margin: 10px;">Medicamentos</span>
+                            <span style="font-size: 12px; white-space: normal;">Gestión de medicamentos</span>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button name="inventario_equipos" type="object" class="btn btn-warning btn-sm w-100 d-flex flex-column align-items-center">
+                            <img src="/cl_inventario/static/img/Equipos_Medicos2.png" alt="Equipos" style="width: 80px; height: 80px; margin-bottom: 1px;"/>
+                            <span style="font-size: 18px; white-space: normal; margin: 10px;">Equipo Médico</span>
+                            <span style="font-size: 12px; white-space: normal;">Gestión de equipo médico.</span>
+                            </button>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_inicio_inv" model="ir.actions.act_window">
+        <field name="name">Inventario</field>
+        <field name="res_model">cl_inventario.inicio_inv</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_inicio_inv_form"/>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_inicio_inv" name="Inventario" action="action_inicio_inv" sequence="1" />
+</odoo>
