@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cita_form" model="ir.ui.view">
+        <field name="name">expediente.citamedica.form</field>
+        <field name="model">expediente.citamedica</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="paciente_id" domain="[('is_patient', '=', True)]" options="{'no_open': True}" />
+                        <field name="fecha_cita" />
+                        <field name="motivo" />
+                        <field name="doctor" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

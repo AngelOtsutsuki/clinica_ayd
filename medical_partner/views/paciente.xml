@@ -1,0 +1,134 @@
+<odoo>
+    <record id="view_paciente_form" model="ir.ui.view">
+        <field name="name">res.partner.paciente.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="agregar" string="Agregar Nuevo Paciente">
+                        <field name="is_patient"/>
+                        <field name="tipo_pac" invisible="not is_patient"/>
+                        <field name="numero_empleado" invisible="not is_patient"/>
+                    </group>
+                    <group invisible="not is_patient">
+                        <group>
+                            <field name="name" string="Nombres"/>
+                            <field name="numero_cuenta"/>
+                        </group>
+                        <group>
+                            <field name="identidad"/>
+                        </group>
+                        <group>
+                            <field name="genero"/>
+                            <field name="edad"/>
+                        </group>
+                        <group>
+                            <field name="fecha_nac"/>
+                            <field name="correo_inst"/>
+                        </group>
+                        <group>
+                            <field name="phone" string="Teléfono"/>
+                        </group>
+                    </group>
+                    <group invisible="not is_patient">
+                        <field name="alergias"/>    
+                    </group>
+                    <group invisible="not is_patient">
+                        <field name="med_act"/>   
+                    </group>
+                    <group name="ultimo" invisible="not is_patient">
+                        <field name="enf_pre"/>    
+                    </group>
+                    <group name="contacto" string="Contacto de Emergencia" invisible="not is_patient">
+                        <group>
+                            <field name="nombre_cont"/>
+                            <field name="telefono_cont"/>
+                        </group>
+                        <group>
+                            <field name="relacion"/>
+                            <field name="telefono_cont2"/>
+                        </group>
+                    </group>
+                    <notebook invisible="not is_patient">
+                        <page string="Citas Médicas">
+                            <field name="citas_ids" mode="kanban,list,form">
+                                <kanban>
+                                    <field name="doctor"/>
+                                    <field name="fecha_cita"/>
+                                    <field name="motivo"/>
+                                    <field name="diagnostico"/>
+                                    <field name="tratamiento"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_global oe_kanban_card">
+                                                <div class="oe_kanban_content">
+                                                    <strong>Fecha: <field name="fecha_cita"/></strong>
+                                                    <strong>Doctor: <field name="doctor"/></strong>
+                                                    <strong>Motivo: <field name="motivo"/></strong>
+                                                    <strong>Diagnóstico: <field name="diagnostico"/></strong>
+                                                    <strong>Tratamiento: <field name="tratamiento"/></strong>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="doctor" />
+                                            <field name="motivo" />
+                                        </group>
+                                        <group>
+                                            <field name="fecha_cita" />
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="diagnostico" />
+                                    </group>
+                                    <group>
+                                        <field name="tratamiento" />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_paciente_kanban" model="ir.ui.view">
+        <field name="name">res.partner.paciente.kanban</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="numero_cuenta"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="correo_inst"/>
+                <field name="tipo_pac"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global oe_kanban_card">
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <span><strong>Tipo de Paciente:</strong> <field name="tipo_pac"/></span>
+                                </div>
+                                <strong>Cuenta: <field name="numero_cuenta"/></strong>
+                                <div>
+                                    <span><strong>Nombre:</strong> <field name="name"/></span>
+                                </div>
+                                <div>
+                                    <span><strong>Teléfono:</strong> <field name="phone"/></span>
+                                </div>
+                                <div>
+                                    <span><strong>Correo Institucional:</strong> <field name="correo_inst"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

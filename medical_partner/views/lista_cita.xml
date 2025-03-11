@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cita_list" model="ir.ui.view">
+        <field name="name">expediente.citamedica.list</field>
+        <field name="model">expediente.citamedica</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="paciente_id" />
+                <field name="fecha_cita" />
+                <field name="doctor" />
+                <field name="motivo" />
+                <field name="diagnostico" />
+                <field name="tratamiento" />
+            </list>
+        </field>
+    </record>
+</odoo>

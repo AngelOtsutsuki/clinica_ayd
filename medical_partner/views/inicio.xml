@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_inicio_medico_form" model="ir.ui.view">
+        <field name="name">inicio.medico.form</field>
+        <field name="model">inicio.medico</field>
+        <field name="arch" type="xml">
+            <form string="Inicio de Expedientes Médicos">
+                <group>
+                    <field name="numero_cuenta"/>
+                    <footer>
+                        <button string="Buscar Paciente" type="object" name="action_buscar_paciente" class="btn-primary"/>
+                        <button string="Agregar Paciente" type="object" name="action_agregar_paciente" class="btn-secondary"/>
+                        <button string="Salir" type="object" name="action_salir" class="btn-danger"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

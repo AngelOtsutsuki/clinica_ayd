@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_paciente_user,access_res_partner_user,model_res_partner,base.group_user,1,1,1,1
+access_inicio_medico_user,access_inicio_user,model_inicio_medico,base.group_user,1,1,1,1
+access_citamedica_user,access_citamedica_user,model_expediente_citamedica,base.group_user,1,1,1,1
