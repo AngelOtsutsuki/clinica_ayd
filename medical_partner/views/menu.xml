@@ -1,19 +1,30 @@
 <odoo>
+    <!-- Acción para abrir Pacientes con vistas personalizadas -->
     <record id="action_pacientes" model="ir.actions.act_window">
         <field name="name">Pacientes</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">kanban,form</field>
         <field name="domain">[('is_patient', '=', True)]</field>
+        <field name="context">{'default_is_patient': True}</field>
+        <field name="view_ids" eval="[(5,0),
+            (0,0,{'view_mode':'kanban','view_id':ref('medical_partner.view_paciente_kanban')}),
+            (0,0,{'view_mode':'form','view_id':ref('medical_partner.view_paciente_form')})
+        ]"/>
     </record>
-    <menuitem id="menu_paciente_root" name="Gestión de Pacientes" sequence="10"/>
-    <menuitem id="menu_paciente" name="Pacientes" parent="menu_paciente_root"
-              action="action_pacientes" sequence="10"/>
 
+    <!-- Menú raíz para Gestión de Pacientes -->
+    <menuitem id="menu_paciente_root" name="Gestión de Pacientes" sequence="10"/>
+
+    <!-- Menú para Pacientes -->
+    <menuitem id="menu_paciente" name="Pacientes" parent="menu_paciente_root" action="action_pacientes" sequence="20"/>
+
+    <!-- Acción para Citas Médicas -->
     <record id="action_citas" model="ir.actions.act_window">
         <field name="name">Citas Médicas</field>
         <field name="res_model">expediente.citamedica</field>
         <field name="view_mode">kanban,list,form</field>
     </record>
-    <menuitem id="menu_citas" name="Citas Médicas" parent="menu_paciente_root" 
-              action="action_citas" sequence="20"/> 
+
+    <!-- Menú para Citas Médicas -->
+    <menuitem id="menu_citas" name="Citas Médicas" parent="menu_paciente_root" action="action_citas" sequence="30"/>
 </odoo>

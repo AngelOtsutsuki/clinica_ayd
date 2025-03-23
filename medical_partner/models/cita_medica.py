@@ -1,4 +1,4 @@
-from odoo import models, fields, api # type: ignore
+from odoo import models, fields
 
 class CitaMedica(models.Model):
     _name = 'expediente.citamedica'

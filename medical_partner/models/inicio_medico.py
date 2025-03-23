@@ -1,4 +1,4 @@
-from odoo import models, fields, api # type: ignore
+from odoo import models, fields
 
 class InicioMedico(models.TransientModel):
     _name = 'inicio.medico'
@@ -18,7 +18,6 @@ class InicioMedico(models.TransientModel):
                     'sticky': False,
                 },
             }
-
         paciente = self.env['res.partner'].search([('numero_cuenta', '=', self.numero_cuenta), ('is_patient', '=', True)], limit=1)
         if paciente:
             return {
