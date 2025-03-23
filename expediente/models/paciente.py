@@ -18,7 +18,6 @@ class Paciente(models.Model):
     nombres = fields.Char(string='Nombres')
     apellidos = fields.Char(string='Apellidos')
     numero_cuenta = fields.Char(string='Número de Cuenta', unique=True)
-    identidad = fields.Char(string='Número de Identidad')
     genero = fields.Selection([
         ('masculino', 'Masculino'),
         ('femenino', 'Femenino'),
