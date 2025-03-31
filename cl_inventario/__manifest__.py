@@ -11,7 +11,11 @@
     'views/inicio_inv.xml',
 
 ],
-
+'assets': {
+    'web.assets_backend': [
+        'cl_registro/static/src/css/clinic_style.css',  
+    ],
+},
     'installable': True,
     'application': True,
 }

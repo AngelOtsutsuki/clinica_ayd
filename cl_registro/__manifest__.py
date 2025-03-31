@@ -7,13 +7,14 @@
     'category': 'Medical',
     'depends': ['base'],
     'data': [
-    'security/ir.model.access.csv',
-    'views/inicio_views.xml',
-
-],
-
+        'security/ir.model.access.csv',
+        'views/inicio_views.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'cl_registro/static/src/css/clinic_style.css',  
+        ],
+    },
     'installable': True,
     'application': True,
 }
-
-

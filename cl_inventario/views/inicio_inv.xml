@@ -4,36 +4,81 @@
         <field name="model">cl_inventario.inicio_inv</field>
         <field name="arch" type="xml">
             <form string="Inventario">
-                <sheet>
-                    <h1 style="text-align: center; margin-top: 30px; margin-bottom: 50px;">Gestión de Inventario: Control y Disponibilidad de Recursos Médicos</h1>
-                    <div class="row" style="margin-top:20px; text-align:center;">
-                        <div class="col-6">
-                            <button name="inventario_medicamentos" type="object" class="btn btn-info btn-sm w-100 d-flex flex-column align-items-center">
-                            <img src="/cl_inventario/static/img/Medicamentos2.png" alt="Medicamentos" style="width: 80px; height: 80px; margin-bottom: 1px;"/>
-                            <span style="font-size: 18px; white-space: normal; margin: 10px;">Medicamentos</span>
-                            <span style="font-size: 12px; white-space: normal;">Gestión de medicamentos</span>
-                            </button>
+                <!-- Enlazar el archivo CSS externo -->
+                <link rel="stylesheet" href="/cl_inventario/static/css/inventario_style.css"/>
+
+                <!-- Contenedor principal con fondo de imagen -->
+                <div class="inventario-background">
+                    <div class="inventario-container">
+                        <!-- Título de la Página -->
+                        <h1 class="inventario-title">Gestión de Inventario: Control y Disponibilidad de Recursos Médicos</h1>
+
+                        <!-- Descripción Explicativa -->
+                        <div class="inventario-description">
+                            <p>
+                                Bienvenido al módulo de Gestión de Inventario. Desde aquí podrás acceder a las herramientas necesarias para controlar y administrar los recursos médicos de la clínica. Selecciona una de las opciones a continuación para comenzar:
+                            </p>
+                            <ul>
+                                <li><strong>Medicamentos:</strong> Gestiona el stock de medicamentos, realiza seguimiento de existencias y genera alertas de reposición.</li>
+                                <li><strong>Equipo Médico:</strong> Controla el estado de los equipos médicos, programa mantenimientos y registra nuevos dispositivos.</li>
+                            </ul>
                         </div>
-                        <div class="col-6">
-                            <button name="inventario_equipos" type="object" class="btn btn-warning btn-sm w-100 d-flex flex-column align-items-center">
-                            <img src="/cl_inventario/static/img/Equipos_Medicos2.png" alt="Equipos" style="width: 80px; height: 80px; margin-bottom: 1px;"/>
-                            <span style="font-size: 18px; white-space: normal; margin: 10px;">Equipo Médico</span>
-                            <span style="font-size: 12px; white-space: normal;">Gestión de equipo médico.</span>
-                            </button>
+
+                        <!-- Botones de Acceso Rápido -->
+                        <div class="row" style="margin-top: 30px; text-align: center; padding: 0 15%;">
+                            <!-- Botón para Medicamentos -->
+                            <div class="col-6">
+                                <button name="inventario_medicamentos" type="object" class="btn inventario-button">
+                                    <img src="/cl_inventario/static/img/Medicamentos2.png" alt="Medicamentos"/>
+                                    <span>Medicamentos</span>
+                                    <span class="button-subtext">Gestión de stock y disponibilidad</span>
+                                    <div class="button-info">
+                                        <p>Gestiona el inventario de medicamentos, realiza pedidos y controla las existencias.</p>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- Botón para Equipos Médicos -->
+                            <div class="col-6">
+                                <button name="inventario_equipos" type="object" class="btn inventario-button">
+                                    <img src="/cl_inventario/static/img/Equipos_Medicos2.png" alt="Equipos"/>
+                                    <span>Equipo Médico</span>
+                                    <span class="button-subtext">Control y mantenimiento</span>
+                                    <div class="button-info">
+                                        <p>Controla el estado de los equipos médicos y programa mantenimientos preventivos.</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Resumen de Inventario -->
+                        <div class="row" style="margin-top: 30px; text-align: center;">
+                            <div class="col-6">
+                                <div class="alert inventario-alert alert-info">
+                                    <h4>Medicamentos en Stock</h4>
+                                    <p>
+                                        <field name="total_medicamentos"/>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="alert inventario-alert alert-warning">
+                                    <h4>Equipos Médicos Registrados</h4>
+                                    <p>
+                                        <field name="total_equipos"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie de Página -->
+                        <div class="inventario-footer">
+                            <p>Contacto: 9522-1209 | <a href="mailto:clinica.ayuda@unah.hn">clinica.ayuda@unah.hn</a></p>
+                            <p>© 2023 Clínica UNAH. Todos los derechos reservados.</p>
                         </div>
                     </div>
-                </sheet>
+                </div>
             </form>
         </field>
     </record>
-
-    <record id="action_inicio_inv" model="ir.actions.act_window">
-        <field name="name">Inventario</field>
-        <field name="res_model">cl_inventario.inicio_inv</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_inicio_inv_form"/>
-        <field name="target">current</field>
-    </record>
-
-    <menuitem id="menu_inicio_inv" name="Inventario" action="action_inicio_inv" sequence="1" />
 </odoo>

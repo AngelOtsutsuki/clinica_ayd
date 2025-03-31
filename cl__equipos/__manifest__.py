@@ -13,8 +13,12 @@
         'views/equipo.xml',  # Vistas de medicamentos
         'views/menu.xml',  # Menú principal (si es necesario)
     ],
+    'assets': {
+        'web.assets_backend': [
+            'cl__equipos/static/css/equipo_style.css',  # Archivo CSS
+        ],
+    },
     'installable': True,
     'application': True,
     'auto_install': False,
 }
-
